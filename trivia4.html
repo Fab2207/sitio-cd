@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trivia Fútbol - Fase 4</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f0f0f0; }
+    .container { background: white; padding: 2rem; border-radius: 8px; max-width: 600px; margin: auto; }
+    h2 { color: #333; }
+    .question { margin-bottom: 1.5rem; padding: 1rem; background: #f9f9f9; border-left: 4px solid #007bff; border-radius: 6px; }
+    .question p { font-weight: bold; margin-bottom: 0.5rem; }
+    select { width: 100%; padding: 0.6rem; border-radius: 4px; border: 1px solid #ccc; font-size: 1rem; }
+    select:focus { border-color: #007bff; outline: none; }
+    button { padding: 0.7rem 1.5rem; background: linear-gradient(45deg, #007bff, #00c6ff); color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+    button:hover { background: linear-gradient(45deg, #0056b3, #0096d6); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Trivia Fútbol - Fase 4</h2>
+
+    <div class="question">
+      <p>1. ¿Qué país ganó el Mundial en 2010?</p>
+      <select id="q1">
+        <option value="">Selecciona</option>
+        <option value="España">España</option>
+        <option value="Países Bajos">Países Bajos</option>
+        <option value="Alemania">Alemania</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Cuál es el nombre del estadio del FC Barcelona?</p>
+      <select id="q2">
+        <option value="">Selecciona</option>
+        <option value="Camp Nou">Camp Nou</option>
+        <option value="Santiago Bernabéu">Santiago Bernabéu</option>
+        <option value="Old Trafford">Old Trafford</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Qué selección tiene el apodo de “La Albiceleste”?</p>
+      <select id="q3">
+        <option value="">Selecciona</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Italia">Italia</option>
+        <option value="Uruguay">Uruguay</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Qué jugador es famoso por la “Mano de Dios”?</p>
+      <select id="q4">
+        <option value="">Selecciona</option>
+        <option value="Diego Maradona">Diego Maradona</option>
+        <option value="Pelé">Pelé</option>
+        <option value="Ronaldinho">Ronaldinho</option>
+      </select>
+    </div>
+
+    <button onclick="validar()">Enviar respuestas</button>
+  </div>
+
+  <div id="felicitacion" style="display:none; text-align:center; padding:2rem;">
+    <h2 style="color:#28a745;">🎉 ¡Felicitaciones!</h2>
+    <p>Has respondido correctamente todas las preguntas.</p>
+    <button onclick="siguienteFase()">Ir a la siguiente fase</button>
+  </div>
+
+  <script>
+    function validar() {
+      const respuestas = {
+        q1: 'España',
+        q2: 'Camp Nou',
+        q3: 'Argentina',
+        q4: 'Diego Maradona'
+      };
+
+      let correctas = 0;
+      for (let key in respuestas) {
+        const valor = document.getElementById(key).value;
+        if (valor === respuestas[key]) correctas++;
+      }
+
+      if (correctas === 4) {
+        document.querySelector('.container').style.display = 'none';
+        document.getElementById('felicitacion').style.display = 'block';
+      } else {
+        alert(`Obtuviste ${correctas}/4. Intenta nuevamente.`);
+      }
+    }
+
+    function siguienteFase() {
+      window.location.href = 'trivia5.html';
+    }
+  </script>
+</body>
+</html>
