@@ -1,4 +1,3 @@
-# .github/workflows/ci-cd.yml
 name: CI/CD Pipeline
 on:
 push:
@@ -7,7 +6,7 @@ pull_request:
 branches: [ main ]
 permissions:
 contents: read
-pages: write # Necesario para desplegar en GitHub Pages
+pages: write
 id-token: write
 concurrency:
 group: "pages"
@@ -45,7 +44,7 @@ lhci autorun \
 cd:
 name: Despliegue a GitHub Pages
 needs: ci
-if: github.ref == 'refs/heads/main' # Solo en push/merge a main
+if: github.ref == 'refs/heads/main' 
 runs-on: ubuntu-latest
 environment:
 name: github-pages
@@ -58,7 +57,7 @@ uses: actions/configure-pages@v5
 - name: Upload artifact
 uses: actions/upload-pages-artifact@v3
 with:
-path: '.' # Carpeta raíz (index.html, etc.)
+path: '.' 
 - name: Deploy to GitHub Pages
 id: deployment
 uses: actions/deploy-pages@v4
